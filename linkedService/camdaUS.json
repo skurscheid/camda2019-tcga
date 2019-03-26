@@ -1,0 +1,15 @@
+{
+	"name": "camdaUS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "Sftp",
+		"typeProperties": {
+			"host": "igenomed.stanford.edu",
+			"port": 22,
+			"skipHostKeyValidation": true,
+			"authenticationType": "Basic",
+			"userName": "camda2019",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkNBTURBQU5BTFlUSUNTX2MxY2IwMzkyLTMwYjItNDQ1OC1iM2UzLWJkZGNiZWFjZDIzYiINCn0="
+		}
+	}
+}
