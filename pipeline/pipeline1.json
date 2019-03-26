@@ -12,6 +12,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "/data/CAMDA_TCGA/BRCA/000837e3-cc9f-4226-ba38-44fa45140671_1.fastq.dsrc"
+					},
+					{
+						"name": "Destination",
+						"value": "camda-tcga-brca/output.gz"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "FileSystemSource",
