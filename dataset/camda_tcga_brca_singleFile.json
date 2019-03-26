@@ -1,0 +1,15 @@
+{
+	"name": "camda_tcga_brca_singleFile",
+	"properties": {
+		"description": "test connection",
+		"linkedServiceName": {
+			"referenceName": "camda Austria",
+			"type": "LinkedServiceReference"
+		},
+		"type": "FileShare",
+		"typeProperties": {
+			"fileName": "000837e3-cc9f-4226-ba38-44fa45140671_1.fastq.dsrc",
+			"folderPath": "/data/CAMDA_TCGA/BRCA"
+		}
+	}
+}
