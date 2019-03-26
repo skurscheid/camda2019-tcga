@@ -8,7 +8,7 @@
 		"type": "AzureBlobFSFile",
 		"typeProperties": {
 			"fileName": "output.gz",
-			"folderPath": "camda_tcga_brca"
+			"folderPath": "camda-tcga-brca"
 		}
 	}
 }
