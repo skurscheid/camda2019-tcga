@@ -5,21 +5,33 @@
 		"factoryName": {
 			"type": "string",
 			"metadata": "Data Factory Name",
-			"defaultValue": "camdaanalytics"
+			"defaultValue": "CAMDAAnalytics"
 		},
 		"AzureDataLakeStorage1_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
 		},
+		"AzureDataLakeStorage2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
+		},
 		"camda Austria_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'camda Austria'"
+		},
+		"camdaUS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'camdaUS'"
 		},
 		"AzureDataLakeStorageFile1_properties_typeProperties_fileName": {
 			"type": "string",
 			"defaultValue": "output.gz"
 		},
 		"AzureDataLakeStorageFile1_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "camda-tcga-brca"
+		},
+		"AzureDataLakeStorageFile2_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "camda-tcga-brca"
 		},
@@ -31,13 +43,29 @@
 			"type": "string",
 			"defaultValue": "/data/CAMDA_TCGA/BRCA"
 		},
+		"camda_tcga_brca_stanford_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "000837e3-cc9f-4226-ba38-44fa45140671_1.fastq.dsrc"
+		},
+		"camda_tcga_brca_stanford_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "/Users/camda2019/CAMDA/BRCA"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://camda2019data.dfs.core.windows.net"
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://camda2019data.dfs.core.windows.net"
 		},
 		"camda Austria_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "camda"
+		},
+		"camdaUS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "camda2019"
 		},
 		"containerUri": {
 			"type": "string",
@@ -69,14 +97,26 @@
 					"AzureDataLakeStorage1_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
 					},
+					"AzureDataLakeStorage2_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage2_accountKey')]"
+					},
 					"camda Austria_password": {
 						"value": "[parameters('camda Austria_password')]"
+					},
+					"camdaUS_password": {
+						"value": "[parameters('camdaUS_password')]"
 					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
+					"AzureDataLakeStorage2_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage2_properties_typeProperties_url')]"
+					},
 					"camda Austria_properties_typeProperties_userName": {
 						"value": "[parameters('camda Austria_properties_typeProperties_userName')]"
+					},
+					"camdaUS_properties_typeProperties_userName": {
+						"value": "[parameters('camdaUS_properties_typeProperties_userName')]"
 					},
 					"AzureDataLakeStorageFile1_properties_typeProperties_fileName": {
 						"value": "[parameters('AzureDataLakeStorageFile1_properties_typeProperties_fileName')]"
@@ -84,11 +124,20 @@
 					"AzureDataLakeStorageFile1_properties_typeProperties_folderPath": {
 						"value": "[parameters('AzureDataLakeStorageFile1_properties_typeProperties_folderPath')]"
 					},
+					"AzureDataLakeStorageFile2_properties_typeProperties_folderPath": {
+						"value": "[parameters('AzureDataLakeStorageFile2_properties_typeProperties_folderPath')]"
+					},
 					"camda_tcga_brca_singleFile_properties_typeProperties_fileName": {
 						"value": "[parameters('camda_tcga_brca_singleFile_properties_typeProperties_fileName')]"
 					},
 					"camda_tcga_brca_singleFile_properties_typeProperties_folderPath": {
 						"value": "[parameters('camda_tcga_brca_singleFile_properties_typeProperties_folderPath')]"
+					},
+					"camda_tcga_brca_stanford_properties_typeProperties_fileName": {
+						"value": "[parameters('camda_tcga_brca_stanford_properties_typeProperties_fileName')]"
+					},
+					"camda_tcga_brca_stanford_properties_typeProperties_folderPath": {
+						"value": "[parameters('camda_tcga_brca_stanford_properties_typeProperties_folderPath')]"
 					}
 				}
 			},
