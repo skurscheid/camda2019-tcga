@@ -1,0 +1,187 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "camdaanalytics"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
+		"camda Austria_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'camda Austria'"
+		},
+		"AzureDataLakeStorageFile1_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "output.gz"
+		},
+		"AzureDataLakeStorageFile1_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "camda-tcga-brca"
+		},
+		"camda_tcga_brca_singleFile_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "000837e3-cc9f-4226-ba38-44fa45140671_1.fastq.dsrc"
+		},
+		"camda_tcga_brca_singleFile_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "/data/CAMDA_TCGA/BRCA"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://camda2019data.dfs.core.windows.net"
+		},
+		"camda Austria_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "camda"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy Data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 3,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "/data/CAMDA_TCGA/BRCA/000837e3-cc9f-4226-ba38-44fa45140671_1.fastq.dsrc"
+							},
+							{
+								"name": "Destination",
+								"value": "camda-tcga-brca/output.gz"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureBlobFSSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "camda_tcga_brca_singleFile",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureDataLakeStorageFile1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/camda_tcga_brca_singleFile')]",
+				"[concat(variables('factoryId'), '/datasets/AzureDataLakeStorageFile1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorageFile1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureBlobFSFile",
+				"typeProperties": {
+					"fileName": "[parameters('AzureDataLakeStorageFile1_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('AzureDataLakeStorageFile1_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/camda_tcga_brca_singleFile')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "test connection",
+				"linkedServiceName": {
+					"referenceName": "camda Austria",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"fileName": "[parameters('camda_tcga_brca_singleFile_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('camda_tcga_brca_singleFile_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/camda Austria')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/camda Austria')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "Sftp",
+				"typeProperties": {
+					"host": "ala.boku.ac.at",
+					"port": 22,
+					"skipHostKeyValidation": true,
+					"authenticationType": "Basic",
+					"userName": "[parameters('camda Austria_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('camda Austria_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

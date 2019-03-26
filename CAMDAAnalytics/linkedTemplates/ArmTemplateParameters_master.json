@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "camdaanalytics"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"camda Austria_password": {
+			"value": ""
+		},
+		"AzureDataLakeStorageFile1_properties_typeProperties_fileName": {
+			"value": "output.gz"
+		},
+		"AzureDataLakeStorageFile1_properties_typeProperties_folderPath": {
+			"value": "camda-tcga-brca"
+		},
+		"camda_tcga_brca_singleFile_properties_typeProperties_fileName": {
+			"value": "000837e3-cc9f-4226-ba38-44fa45140671_1.fastq.dsrc"
+		},
+		"camda_tcga_brca_singleFile_properties_typeProperties_folderPath": {
+			"value": "/data/CAMDA_TCGA/BRCA"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://camda2019data.dfs.core.windows.net"
+		},
+		"camda Austria_properties_typeProperties_userName": {
+			"value": "camda"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
