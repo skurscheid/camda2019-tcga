@@ -1,0 +1,13 @@
+{
+	"name": "AzureDataLakeStorageFile2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlobFSFile",
+		"typeProperties": {
+			"folderPath": "camda-tcga-brca"
+		}
+	}
+}
