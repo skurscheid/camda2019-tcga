@@ -45,7 +45,7 @@
 		},
 		"camda_tcga_brca_stanford_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "000837e3-cc9f-4226-ba38-44fa45140671_1.fastq.dsrc"
+			"defaultValue": "*"
 		},
 		"camda_tcga_brca_stanford_properties_typeProperties_folderPath": {
 			"type": "string",

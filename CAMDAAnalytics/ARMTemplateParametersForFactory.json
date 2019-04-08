@@ -33,7 +33,7 @@
 			"value": "/data/CAMDA_TCGA/BRCA"
 		},
 		"camda_tcga_brca_stanford_properties_typeProperties_fileName": {
-			"value": "000837e3-cc9f-4226-ba38-44fa45140671_1.fastq.dsrc"
+			"value": "*"
 		},
 		"camda_tcga_brca_stanford_properties_typeProperties_folderPath": {
 			"value": "/Users/camda2019/CAMDA/BRCA"

@@ -45,7 +45,7 @@
 		},
 		"camda_tcga_brca_stanford_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "000837e3-cc9f-4226-ba38-44fa45140671_1.fastq.dsrc"
+			"defaultValue": "*"
 		},
 		"camda_tcga_brca_stanford_properties_typeProperties_folderPath": {
 			"type": "string",
@@ -130,6 +130,68 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/camda_tcga_brca_singleFile')]",
 				"[concat(variables('factoryId'), '/datasets/AzureDataLakeStorageFile1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "camda-tcga-brca-us",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 3,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "/Users/camda2019/CAMDA/BRCA/000837e3-cc9f-4226-ba38-44fa45140671_1.fastq.dsrc"
+							},
+							{
+								"name": "Destination",
+								"value": "camda-tcga-brca/"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureBlobFSSink",
+								"copyBehavior": "PreserveHierarchy"
+							},
+							"enableStaging": false,
+							"parallelCopies": 8
+						},
+						"inputs": [
+							{
+								"referenceName": "camda_tcga_brca_stanford",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureDataLakeStorageFile2",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/camda_tcga_brca_stanford')]",
+				"[concat(variables('factoryId'), '/datasets/AzureDataLakeStorageFile2')]"
 			]
 		},
 		{
@@ -287,68 +349,6 @@
 				}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "camda-tcga-brca-us",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [
-							{
-								"name": "Source",
-								"value": "/Users/camda2019/CAMDA/BRCA/000837e3-cc9f-4226-ba38-44fa45140671_1.fastq.dsrc"
-							},
-							{
-								"name": "Destination",
-								"value": "camda-tcga-brca/"
-							}
-						],
-						"typeProperties": {
-							"source": {
-								"type": "FileSystemSource",
-								"recursive": true
-							},
-							"sink": {
-								"type": "AzureBlobFSSink",
-								"copyBehavior": "PreserveHierarchy"
-							},
-							"enableStaging": false,
-							"parallelCopies": 8
-						},
-						"inputs": [
-							{
-								"referenceName": "camda_tcga_brca_stanford",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "AzureDataLakeStorageFile2",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/camda_tcga_brca_stanford')]",
-				"[concat(variables('factoryId'), '/datasets/AzureDataLakeStorageFile2')]"
-			]
 		}
 	]
 }
