@@ -59,6 +59,22 @@
 			"type": "string",
 			"defaultValue": "camda2019"
 		},
+		"camda_tcga_kirc_stanford_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "*.fastq.dsrc"
+		},
+		"camda_tcga_kirc_stanford_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "/Users/camda2019/CAMDA/KIRC"
+		},
+		"AzureDataLakeStorageFile_tcga_kirc_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"AzureDataLakeStorageFile_tcga_kirc_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "camda-tcga-kirc"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -124,6 +140,18 @@
 					},
 					"camda_tcga_brca_stanford_properties_typeProperties_folderPath": {
 						"value": "[parameters('camda_tcga_brca_stanford_properties_typeProperties_folderPath')]"
+					},
+					"camda_tcga_kirc_stanford_properties_typeProperties_fileName": {
+						"value": "[parameters('camda_tcga_kirc_stanford_properties_typeProperties_fileName')]"
+					},
+					"camda_tcga_kirc_stanford_properties_typeProperties_folderPath": {
+						"value": "[parameters('camda_tcga_kirc_stanford_properties_typeProperties_folderPath')]"
+					},
+					"AzureDataLakeStorageFile_tcga_kirc_properties_typeProperties_fileName": {
+						"value": "[parameters('AzureDataLakeStorageFile_tcga_kirc_properties_typeProperties_fileName')]"
+					},
+					"AzureDataLakeStorageFile_tcga_kirc_properties_typeProperties_folderPath": {
+						"value": "[parameters('AzureDataLakeStorageFile_tcga_kirc_properties_typeProperties_folderPath')]"
 					}
 				}
 			},

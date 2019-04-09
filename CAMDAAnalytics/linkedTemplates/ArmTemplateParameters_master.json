@@ -44,6 +44,18 @@
 		"camdaUS_properties_typeProperties_userName": {
 			"value": "camda2019"
 		},
+		"camda_tcga_kirc_stanford_properties_typeProperties_fileName": {
+			"value": "*.fastq.dsrc"
+		},
+		"camda_tcga_kirc_stanford_properties_typeProperties_folderPath": {
+			"value": "/Users/camda2019/CAMDA/KIRC"
+		},
+		"AzureDataLakeStorageFile_tcga_kirc_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"AzureDataLakeStorageFile_tcga_kirc_properties_typeProperties_folderPath": {
+			"value": "camda-tcga-kirc"
+		},
 		"containerUri": {
 			"value": ""
 		},

@@ -58,6 +58,22 @@
 		"camda_tcga_brca_stanford_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "/Users/camda2019/CAMDA/BRCA"
+		},
+		"camda_tcga_kirc_stanford_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "*.fastq.dsrc"
+		},
+		"camda_tcga_kirc_stanford_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "/Users/camda2019/CAMDA/KIRC"
+		},
+		"AzureDataLakeStorageFile_tcga_kirc_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"AzureDataLakeStorageFile_tcga_kirc_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "camda-tcga-kirc"
 		}
 	},
 	"variables": {
@@ -201,6 +217,51 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/camda_tcga_kirc_stanford')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "camdaUS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [
+					"camda2019",
+					"tcga",
+					"kirc",
+					"rna-seq"
+				],
+				"type": "FileShare",
+				"typeProperties": {
+					"fileName": "[parameters('camda_tcga_kirc_stanford_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('camda_tcga_kirc_stanford_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/camdaUS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorageFile_tcga_kirc')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureBlobFSFile",
+				"typeProperties": {
+					"fileName": "[parameters('AzureDataLakeStorageFile_tcga_kirc_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('AzureDataLakeStorageFile_tcga_kirc_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage2')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -321,6 +382,84 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/camda_tcga_brca_stanford')]",
 				"[concat(variables('factoryId'), '/datasets/AzureDataLakeStorageFile2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/stanford_tcga_kirc_fastq')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "copy_fastq",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "/Users/camda2019/CAMDA/KIRC/*.fastq.dsrc"
+							},
+							{
+								"name": "Destination",
+								"value": "camda-tcga-kirc/"
+							},
+							{
+								"name": "format",
+								"value": "fastq"
+							},
+							{
+								"name": "compression",
+								"value": "dsrc"
+							},
+							{
+								"name": "assay",
+								"value": "rna-seq"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureBlobFSSink",
+								"copyBehavior": "PreserveHierarchy"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "camda_tcga_kirc_stanford",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureDataLakeStorageFile_tcga_kirc",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"parameters": {
+					"kirc": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/camda_tcga_kirc_stanford')]",
+				"[concat(variables('factoryId'), '/datasets/AzureDataLakeStorageFile_tcga_kirc')]"
 			]
 		}
 	]
