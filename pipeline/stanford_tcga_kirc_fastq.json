@@ -58,6 +58,11 @@
 					}
 				]
 			}
-		]
+		],
+		"parameters": {
+			"kirc": {
+				"type": "String"
+			}
+		}
 	}
 }
