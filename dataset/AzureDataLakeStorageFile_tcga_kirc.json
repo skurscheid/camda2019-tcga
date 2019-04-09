@@ -1,0 +1,14 @@
+{
+	"name": "AzureDataLakeStorageFile_tcga_kirc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlobFSFile",
+		"typeProperties": {
+			"fileName": "",
+			"folderPath": "camda-tcga-kirc"
+		}
+	}
+}
