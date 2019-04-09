@@ -17,17 +17,11 @@
 		"camdaUS_password": {
 			"value": ""
 		},
-		"AzureDataLakeStorageFile1_properties_typeProperties_fileName": {
-			"value": "output.gz"
-		},
-		"AzureDataLakeStorageFile1_properties_typeProperties_folderPath": {
-			"value": "camda-tcga-brca"
-		},
 		"AzureDataLakeStorageFile2_properties_typeProperties_folderPath": {
 			"value": "camda-tcga-brca"
 		},
 		"camda_tcga_brca_singleFile_properties_typeProperties_fileName": {
-			"value": "000837e3-cc9f-4226-ba38-44fa45140671_1.fastq.dsrc"
+			"value": "000837e3-cc9f-4226-ba38-44fa45140671_*.fastq.dsrc"
 		},
 		"camda_tcga_brca_singleFile_properties_typeProperties_folderPath": {
 			"value": "/data/CAMDA_TCGA/BRCA"
