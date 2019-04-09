@@ -1,0 +1,63 @@
+{
+	"name": "stanford_tcga_kirc_fastq",
+	"properties": {
+		"activities": [
+			{
+				"name": "copy_fastq",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "/Users/camda2019/CAMDA/KIRC/*.fastq.dsrc"
+					},
+					{
+						"name": "Destination",
+						"value": "camda-tcga-kirc/"
+					},
+					{
+						"name": "format",
+						"value": "fastq"
+					},
+					{
+						"name": "compression",
+						"value": "dsrc"
+					},
+					{
+						"name": "assay",
+						"value": "rna-seq"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "FileSystemSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "AzureBlobFSSink",
+						"copyBehavior": "PreserveHierarchy"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "camda_tcga_kirc_stanford",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureDataLakeStorageFile_tcga_kirc",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	}
+}
