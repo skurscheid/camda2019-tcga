@@ -7,7 +7,7 @@
 		},
 		"type": "FileShare",
 		"typeProperties": {
-			"fileName": "*",
+			"fileName": "03da1258-ea97-4bc0-b662-c89a8810b1ca_*.fastq.dsrc",
 			"folderPath": "/Users/camda2019/CAMDA/BRCA"
 		}
 	}
