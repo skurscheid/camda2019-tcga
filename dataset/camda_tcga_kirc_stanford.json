@@ -1,0 +1,20 @@
+{
+	"name": "camda_tcga_kirc_stanford",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "camdaUS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [
+			"camda2019",
+			"tcga",
+			"kirc",
+			"rna-seq"
+		],
+		"type": "FileShare",
+		"typeProperties": {
+			"fileName": "*.fastq.dsrc",
+			"folderPath": "/Users/camda2019/CAMDA/KIRC"
+		}
+	}
+}

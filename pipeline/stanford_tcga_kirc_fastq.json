@@ -1,13 +1,13 @@
 {
-	"name": "pipeline1",
+	"name": "stanford_tcga_kirc_fastq",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy Data1",
+				"name": "copy_fastq",
 				"type": "Copy",
 				"policy": {
 					"timeout": "7.00:00:00",
-					"retry": 3,
+					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
@@ -15,11 +15,23 @@
 				"userProperties": [
 					{
 						"name": "Source",
-						"value": "/data/CAMDA_TCGA/BRCA/000837e3-cc9f-4226-ba38-44fa45140671_1.fastq.dsrc"
+						"value": "/Users/camda2019/CAMDA/KIRC/*.fastq.dsrc"
 					},
 					{
 						"name": "Destination",
-						"value": "camda-tcga-brca/output.gz"
+						"value": "camda-tcga-kirc/"
+					},
+					{
+						"name": "format",
+						"value": "fastq"
+					},
+					{
+						"name": "compression",
+						"value": "dsrc"
+					},
+					{
+						"name": "assay",
+						"value": "rna-seq"
 					}
 				],
 				"typeProperties": {
@@ -35,17 +47,22 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "camda_tcga_brca_singleFile",
+						"referenceName": "camda_tcga_kirc_stanford",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureDataLakeStorageFile2",
+						"referenceName": "AzureDataLakeStorageFile_tcga_kirc",
 						"type": "DatasetReference"
 					}
 				]
 			}
-		]
+		],
+		"parameters": {
+			"kirc": {
+				"type": "String"
+			}
+		}
 	}
 }
