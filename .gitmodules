@@ -1,0 +1,3 @@
+[submodule "snakemake/camda2019-workflows"]
+	path = snakemake/camda2019-workflows
+	url = git@github.com:skurscheid/camda2019-workflows.git
