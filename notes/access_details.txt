@@ -1,0 +1,28 @@
+CAMDA challenge
+
+The anonymized read level data are now available to download from SFTP server hosted at BOKU Vienna:
+Server: ala.boku.ac.at port 22 or 443
+Username: camda 
+Password: camdac4md4 
+# /data/CAMDA_TCGA/BRCA
+#lftp
+##connect 
+
+Server: ala.boku.ac.at port 22 or 443
+Username: camda 
+Password: camdac4md4 
+The US mirror of these data is hosted at SFTP server at Stanford University:
+Server: igenomed.stanford.edu
+Username: camda2019
+Password: MassiveData0724
+Path: /Users/camda2019/CAMDA/
+ECDSA FP M9eBjwqr+a3KAG1u6Or1v9NeNXkOHOY6NjYZjvIj7+Y
+
+/Users/camda2019/CAMDA/BRCA/ffac53b9-0bfb-4015-888c-c0fae973f3f2_1.fastq.dsrc
+
+curl  -k "sftp://igenomed.stanford.edu:/Users/camda2019/CAMDA/BRCA/ffac53b9-0bfb-4015-888c-c0fae973f3f2_1.fastq.dsrc" \
+    --user "camda2019:MassiveData0724" -o "." --ftp-create-dirs
+
+scp -rp sftp://camda2019:MassiveData0724@igenomed.stanford.edu:/Users/camda2019/CAMDA/BRCA/ffac53b9-0bfb-4015-888c-c0fae973f3f2_1.fastq.dsrc .\
+
+scp -rp sftp://camda@ala.boku.ac.at:/data/CAMDA_TCGA/BRCA/ffac53b9-0bfb-4015-888c-c0fae973f3f2_1.fastq.dsrc .\
