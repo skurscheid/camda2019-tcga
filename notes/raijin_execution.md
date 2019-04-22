@@ -1,0 +1,1 @@
+* After a snakemake process has been terminated due to exceeding walltime, it is necessary to use --unlock before re-submission
