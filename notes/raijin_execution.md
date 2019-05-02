@@ -1,6 +1,6 @@
 ---
 Title: Execution of snakemake workflows on NCI's raijin
-output: markdown
+output: html
 ---
 
 * Notes regarding execution of snakemake workflows on NCI's raijin
