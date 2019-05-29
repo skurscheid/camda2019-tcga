@@ -1,8 +1,8 @@
 # Implementation of "Best Practices for De Novo Transcriptome Assembly with Trinity"
 ## Source 
-    The original document can be found at https://informatics.fas.harvard.edu/best-practices-for-de-novo-transcriptome-assembly-with-trinity.html
+The original document can be found at https://informatics.fas.harvard.edu/best-practices-for-de-novo-transcriptome-assembly-with-trinity.html
 
-    Here I am addressing the points raised and document the implementation of the recommended steps in our CAMDA2019 TCGA pipeline.
+Here I am addressing the points raised and document the implementation of the recommended steps in our CAMDA2019 TCGA pipeline.
 
 ## Remarks and comments about the steps outlined in the document:
 * 2 Examine quality metrics for sequencing reads:
