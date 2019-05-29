@@ -26,12 +26,23 @@ Here I am addressing the points raised and document the implementation of the re
     An optional step, but in my opinion quite crucial in particular when dealing with a large volume of samples of unknown provenance.
     In order to reduce the search space, I am only including metazoan rRNA sequences:
     
+    0. Download *Parc FASTA files from SILVA database:
+    ```https://www.arb-silva.de/no_cache/download/archive/release_132/Exports/```
+    
     1. Filter SSU sequence IDs
     ```
     zcat SILVA_132_SSUParc_tax_silva.fasta.gz | grep '>' | grep 'Metazoa' | cut -f 1 -d " " | awk '{ gsub(">", "") ; print $0 }' > ssu_metazoa_IDs.txt
     ```
     2. Filter LSU sequence IDs
-        ```
+    ```
     zcat SILVA_132_LSUParc_tax_silva.fasta.gz | grep '>' | grep 'Metazoa' | cut -f 1 -d " " | awk '{ gsub(">", "") ; print $0 }' > lsu_metazoa_IDs.txt
     ```
+    3. Index FASTA files using samtools
+        
+        1. convert gz to bgz (blocked for indexing)
+        ```
+            gzip -d -c SILVA_132_SSUParc_tax_silva.fasta.gz | pbgzip -c -n 2 - >  SILVA_132_SSUParc_tax_silva.fasta.bgz
+            gzip -d -c SILVA_132_LSUParc_tax_silva.fasta.gz | pbgzip -c -n 2 - >  SILVA_132_LSUParc_tax_silva.fasta.bgz
+        ```
+        
 
