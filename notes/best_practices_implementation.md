@@ -26,7 +26,7 @@ see above, implemented using fastp
 An optional step, but in my opinion quite crucial in particular when dealing with a large volume of samples of unknown provenance.
 In order to reduce the search space, I am only including metazoan rRNA sequences:
 
-'''
+```
 zcat SILVA_132_SSUParc_tax_silva.fasta.gz | grep '>' | grep 'Metazoa' | cut -f 1 -d " " | awk '{ gsub(">", "") ; print $0 }' > ssu_metazoa_IDs.txt
-'''
+```
 
