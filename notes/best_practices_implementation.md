@@ -27,7 +27,7 @@ Here I am addressing the points raised and document the implementation of the re
     In order to reduce the search space, I am only including metazoan rRNA sequences:
     
     0. Download *Parc FASTA files from SILVA database:
-    ```https://www.arb-silva.de/no_cache/download/archive/release_132/Exports/```
+    https://www.arb-silva.de/no_cache/download/archive/release_132/Exports/
     
     1. Filter SSU sequence IDs
     ```
